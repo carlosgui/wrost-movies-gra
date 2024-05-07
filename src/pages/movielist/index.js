@@ -73,8 +73,10 @@ function Movielist() {
   }
 
   function handleOnSubmit() {
-    setSearchYear(`&year=${movieYear}`);
-    setActivePage(0);
+    if (movieYear !== "") {
+      setSearchYear(`&year=${movieYear}`);
+      setActivePage(0);
+    }
   }
 
   function handleSwitchWinnerStatus(status) {
@@ -109,6 +111,7 @@ function Movielist() {
                   <Col xs={12} md={6}>
                     <InputGroup className="mb-3">
                       <Form.Control
+                        type="number"
                         placeholder="Search by year"
                         aria-label="Search by year"
                         aria-describedby="basic-addon2"

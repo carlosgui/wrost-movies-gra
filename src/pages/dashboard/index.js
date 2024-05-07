@@ -58,7 +58,9 @@ function Dashboard() {
         setWinnersByYear(winByYear.data);
       }
 
-      submit();
+      if (movieYear !== "") {
+        submit();
+      }
     },
     [movieYear]
   );
@@ -216,6 +218,7 @@ function Dashboard() {
 
               <InputGroup className="mb-3">
                 <Form.Control
+                  type="number"
                   placeholder="Search by year"
                   aria-label="Search by year"
                   aria-describedby="basic-addon2"
