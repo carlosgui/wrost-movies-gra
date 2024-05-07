@@ -42,6 +42,10 @@ function Dashboard() {
     load();
   }, []);
 
+  function handleOnChange(e) {
+    setMovieYear(e.target.value);
+  }
+
   const handleOnSubmit = useCallback(
     (e) => {
       e.preventDefault();
@@ -56,20 +60,12 @@ function Dashboard() {
 
       submit();
     },
-    [winnersByYear]
+    [movieYear]
   );
-
-  useEffect(() => {
-    console.log(movieYear);
-  }, [movieYear]);
-
-  function handleOnChange(e) {
-    setMovieYear(e.target.value);
-  }
 
   return (
     <Container>
-      <div class="mt-4">
+      <div className="mt-4">
         <Row>
           <Col md={12} lg={6}>
             <Card body>
@@ -138,7 +134,7 @@ function Dashboard() {
         </Row>
       </div>
 
-      <div class="mt-4">
+      <div className="mt-4">
         <Row>
           <Col md={12} lg={6}>
             <Card body>
