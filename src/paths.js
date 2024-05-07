@@ -7,8 +7,8 @@ export default function Paths() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" Component={Dashboard} />
         <Route exact path="/movielist" Component={Movielist} />
+        <Route exact path="/" Component={Dashboard} />
       </Routes>
     </BrowserRouter>
   );
