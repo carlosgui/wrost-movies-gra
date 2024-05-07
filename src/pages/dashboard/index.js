@@ -227,7 +227,7 @@ function Dashboard() {
                   variant="outline-secondary"
                   id="button-addon2"
                 >
-                  Buscar
+                  Search
                 </Button>
               </InputGroup>
               {loading ? (

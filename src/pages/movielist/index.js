@@ -22,11 +22,13 @@ function Movielist() {
   const [totalOfPages, setTotalOfPages] = useState(0);
   const [searchYear, setSearchYear] = useState("");
   const [movieYear, setMovieYear] = useState("");
+  const [winnerStatus, setWinnerStatus] = useState("");
+  const [winnerText, setWinnerText] = useState("Select Status");
 
   useEffect(() => {
     async function load() {
       const [allStudiosData] = await Promise.all([
-        api.get(`?page=${activePage}&size=10${searchYear}`),
+        api.get(`?page=${activePage}&size=10${searchYear}${winnerStatus}`),
       ]);
       const { totalPages } = allStudiosData.data;
 
@@ -56,7 +58,7 @@ function Movielist() {
     }
 
     load();
-  }, [activePage, searchYear]);
+  }, [activePage, searchYear, winnerStatus]);
 
   function handleNextPrevButton(isNext) {
     isNext ? setActivePage(activePage + 1) : setActivePage(activePage - 1);
@@ -75,6 +77,26 @@ function Movielist() {
     setActivePage(0);
   }
 
+  function handleSwitchWinnerStatus(status) {
+    if (status === "YES") {
+      setWinnerStatus("&winner=true");
+      setWinnerText("Winner");
+    } else if (status === "NO") {
+      setWinnerStatus("&winner=false");
+      setWinnerText("Not Winner");
+    } else {
+      setWinnerStatus("");
+      setWinnerText("Select Status");
+    }
+  }
+
+  function clearFilters() {
+    setWinnerStatus("");
+    setWinnerText("Select Status");
+    setSearchYear("");
+    setActivePage(0);
+  }
+
   return (
     <Container>
       <div className="mt-4">
@@ -84,7 +106,7 @@ function Movielist() {
               <Card.Title>List years with multiple winners</Card.Title>
               <Card.Body>
                 <Row>
-                  <Col>
+                  <Col xs={12} md={6}>
                     <InputGroup className="mb-3">
                       <Form.Control
                         placeholder="Search by year"
@@ -98,22 +120,42 @@ function Movielist() {
                         id="button-addon2"
                         onClick={() => handleOnSubmit()}
                       >
-                        Buscar
+                        Search
                       </Button>
                     </InputGroup>
                   </Col>
-                  <Col>
+                  <Col xs={12} md={4}>
                     <Dropdown>
                       <Dropdown.Toggle id="dropdown-basic">
-                        Winner (Yes / No)
+                        {winnerText}
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item>All</Dropdown.Item>
-                        <Dropdown.Item>Yes</Dropdown.Item>
-                        <Dropdown.Item>No</Dropdown.Item>
+                        <Dropdown.Item>
+                          <div onClick={() => handleSwitchWinnerStatus("ALL")}>
+                            All
+                          </div>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                          <div onClick={() => handleSwitchWinnerStatus("YES")}>
+                            Yes
+                          </div>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                          <div onClick={() => handleSwitchWinnerStatus("NO")}>
+                            No
+                          </div>
+                        </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
+                  </Col>
+                  <Col xs={12} md={2}>
+                    <div
+                      style={{ cursor: "pointer" }}
+                      onClick={() => clearFilters()}
+                    >
+                      Clear Filters
+                    </div>
                   </Col>
                 </Row>
               </Card.Body>
