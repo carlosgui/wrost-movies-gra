@@ -32,33 +32,37 @@ function Movielist() {
       ]);
       const { totalPages } = allStudiosData.data;
 
-      let items = [];
-      for (
-        let number = activePage >= 3 ? activePage - 2 : 0;
-        number <= (activePage < totalPages ? activePage + 2 : activePage);
-        number++
-      ) {
-        if (number <= totalPages - 1) {
-          items.push(
-            <Pagination.Item
-              key={number}
-              active={number === activePage}
-              onClick={() => handleOnclickPageNumbers(number)}
-            >
-              {number + 1}
-            </Pagination.Item>
-          );
-        }
-      }
-
       setTotalOfPages(totalPages);
-      setPaginationItens(items);
+      setPaginationItens(mountPaginationItems(totalPages));
       setAllStudios(allStudiosData.data.content);
       setLoading(false);
     }
 
     load();
   }, [activePage, searchYear, winnerStatus]);
+
+  function mountPaginationItems(totalPages) {
+    let items = [];
+    for (
+      let number = activePage >= 3 ? activePage - 2 : 0;
+      number <= (activePage < totalPages ? activePage + 2 : activePage);
+      number++
+    ) {
+      if (number <= totalPages - 1) {
+        items.push(
+          <Pagination.Item
+            key={number}
+            active={number === activePage}
+            onClick={() => handleOnclickPageNumbers(number)}
+          >
+            {number + 1}
+          </Pagination.Item>
+        );
+      }
+    }
+
+    return items;
+  }
 
   function handleNextPrevButton(isNext) {
     isNext ? setActivePage(activePage + 1) : setActivePage(activePage - 1);

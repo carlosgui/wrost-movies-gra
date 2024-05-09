@@ -11,6 +11,8 @@ import {
   Table,
 } from "react-bootstrap";
 import api from "../../services/api";
+import YearsAndWinners from "../components/yearsAndWinners";
+import MaxMinInterval from "../components/maxMinInterval";
 
 function Dashboard() {
   const [movieYear, setMovieYear] = useState("");
@@ -66,75 +68,23 @@ function Dashboard() {
   );
 
   return (
-    <Container>
-      <div className="mt-4">
-        <Row>
-          <Col md={12} lg={6}>
-            <Card body>
-              <Card.Title>List years with multiple winners</Card.Title>
-              {loading ? (
-                <Spinner animation="border" />
-              ) : (
-                <Table
-                  striped="true"
-                  bordered={true}
-                  hover={true}
-                  responsive="sm"
-                >
-                  <thead>
-                    <tr>
-                      <th>Year</th>
-                      <th>Win Count</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {multWinners.map((value, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{value.year}</td>
-                          <td>{value.winnerCount}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </Table>
-              )}
-            </Card>
-          </Col>
-          <Col md={12} lg={6}>
-            <Card body>
-              <Card.Title>Top 3 studios with winners</Card.Title>
-              {loading ? (
-                <Spinner animation="border" />
-              ) : (
-                <Table
-                  striped="true"
-                  bordered={true}
-                  hover={true}
-                  responsive="sm"
-                >
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Win Count</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {topWinners.map((value, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{value.name}</td>
-                          <td>{value.winCount}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </Table>
-              )}
-            </Card>
-          </Col>
-        </Row>
-      </div>
+    <Container className="mt-4">
+      <Row>
+        <Col md={12} lg={6}>
+          <YearsAndWinners
+            multWinners={multWinners}
+            loading={loading}
+            changeTable={true}
+          />
+        </Col>
+        <Col md={12} lg={6}>
+          <YearsAndWinners
+            topWinners={topWinners}
+            loading={loading}
+            changeTable={false}
+          />
+        </Col>
+      </Row>
 
       <div className="mt-4">
         <Row>
@@ -149,64 +99,11 @@ function Dashboard() {
                 <Row>
                   <Col lg={12}>
                     <Card.Text>Maximum</Card.Text>
-                    <Table
-                      striped="true"
-                      bordered={true}
-                      hover={true}
-                      responsive="sm"
-                    >
-                      <thead>
-                        <tr>
-                          <th>Producer</th>
-                          <th>Interval</th>
-                          <th>Previous Year</th>
-                          <th>Following Year</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {maxProjectionWin.map((value, index) => {
-                          return (
-                            <tr key={index}>
-                              <td>{value.producer}</td>
-                              <td>{value.interval}</td>
-                              <td>{value.previousWin}</td>
-                              <td>{value.followingWin}</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </Table>
+                    <MaxMinInterval content={maxProjectionWin} />
                   </Col>
                   <Col lg={12}>
                     <Card.Text>Minimum</Card.Text>
-
-                    <Table
-                      striped="true"
-                      bordered={true}
-                      hover={true}
-                      responsive="sm"
-                    >
-                      <thead>
-                        <tr>
-                          <th>Producer</th>
-                          <th>Interval</th>
-                          <th>Previous Year</th>
-                          <th>Following Year</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {minProjectionWin.map((value, index) => {
-                          return (
-                            <tr key={index}>
-                              <td>{value.producer}</td>
-                              <td>{value.interval}</td>
-                              <td>{value.previousWin}</td>
-                              <td>{value.followingWin}</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </Table>
+                    <MaxMinInterval content={minProjectionWin} />
                   </Col>
                 </Row>
               )}
