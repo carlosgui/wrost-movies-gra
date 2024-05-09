@@ -17,7 +17,7 @@ function YearsAndWinners({ multWinners, loading, changeTable, topWinners }) {
       return multWinners.map(({ year, winnerCount }, index) => {
         return (
           <tr key={index}>
-            <td>{year}</td>
+            <td id="title-year">{year}</td>
             <td>{winnerCount}</td>
           </tr>
         );
@@ -40,7 +40,13 @@ function YearsAndWinners({ multWinners, loading, changeTable, topWinners }) {
       {loading ? (
         <Spinner animation="border" />
       ) : (
-        <Table striped="true" bordered={true} hover={true} responsive="sm">
+        <Table
+          striped="true"
+          bordered={true}
+          hover={true}
+          responsive="sm"
+          aria-label="List movie winners by year"
+        >
           <thead>
             <tr>
               <th>{changeTable ? "Year" : "Name"}</th>

@@ -3,6 +3,12 @@ import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import YearsAndWinners from "../src/pages/components/yearsAndWinners";
 
+/**
+ * This test function should teste bouth tables that shows
+ * List years with multiple winners
+ * and
+ * Top 3 studios with winners
+ */
 describe("Test yearsAndWinners component", () => {
   test("renders loading spinner when loading prop is true", () => {
     const { container } = render(
@@ -14,7 +20,6 @@ describe("Test yearsAndWinners component", () => {
       />
     );
 
-    // Assert that loading spinner is rendered correctly
     expect(container.querySelector(".spinner-border")).toBeInTheDocument();
   });
 
@@ -33,14 +38,11 @@ describe("Test yearsAndWinners component", () => {
       />
     );
 
-    // Assert that "List years with multiple winners" card title is rendered
     expect(getByText("List years with multiple winners")).toBeInTheDocument();
 
-    // Assert that table headers are rendered
     expect(getByText("Year")).toBeInTheDocument();
     expect(getByText("Win Count")).toBeInTheDocument();
 
-    // Assert that rows with year and winner count are rendered
     multWinners.forEach(({ year, winnerCount }) => {
       expect(getByText(year.toString())).toBeInTheDocument();
       expect(getByText(winnerCount.toString())).toBeInTheDocument();
@@ -62,14 +64,11 @@ describe("Test yearsAndWinners component", () => {
       />
     );
 
-    // Assert that "Top 3 studios with winners" card title is rendered
     expect(getByText("Top 3 studios with winners")).toBeInTheDocument();
 
-    // Assert that table headers are rendered
     expect(getByText("Name")).toBeInTheDocument();
     expect(getByText("Win Count")).toBeInTheDocument();
 
-    // Assert that rows with studio name and win count are rendered
     topWinners.forEach(({ name, winCount }) => {
       expect(getByText(name)).toBeInTheDocument();
       expect(getByText(winCount.toString())).toBeInTheDocument();
