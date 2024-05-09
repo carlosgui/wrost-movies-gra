@@ -61,30 +61,6 @@ function Movielist() {
     load();
   }, [activePage, searchYear, winnerStatus]);
 
-  //should be an usecallback separately
-  // const mountPaginationItems = (totalPages) => {
-  //   let items = [];
-  //   for (
-  //     let number = activePage >= 3 ? activePage - 2 : 0;
-  //     number <= (activePage < totalPages ? activePage + 2 : activePage);
-  //     number++
-  //   ) {
-  //     if (number <= totalPages - 1) {
-  //       items.push(
-  //         <Pagination.Item
-  //           key={number}
-  //           active={number === activePage}
-  //           onClick={() => handleOnclickPageNumbers(number)}
-  //         >
-  //           {number + 1}
-  //         </Pagination.Item>
-  //       );
-  //     }
-  //   }
-
-  //   return items;
-  // };
-
   function handleNextPrevButton(isNext) {
     isNext ? setActivePage(activePage + 1) : setActivePage(activePage - 1);
   }

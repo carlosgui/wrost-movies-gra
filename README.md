@@ -2,7 +2,7 @@
 
 Wrost Movies GRA is a web application that provides information about the worst movies ever nominated for the Golden Raspberry Awards. It allows users to explore and filter through a list of movies based on different criteria.
 
-\*\*NOTE: This project is hosted at: <a href="https://main--resplendent-belekoy-c1d83e.netlify.app/"> NETLIFY - Wrost Movie G.R.A</a>
+\*\*NOTE: This project is hosted at: <a href="https://main--resplendent-belekoy-c1d83e.netlify.app/" target="_Blank"> NETLIFY - Wrost Movie G.R.A</a>
 
 ## Features
 
