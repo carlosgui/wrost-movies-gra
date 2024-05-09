@@ -1,27 +1,34 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
-import MaxMinInterval from "../src/pages/components/maxMinInterval"; // Adjust the import path as needed
+import MaxMinInterval from "../src/pages/components/maxMinInterval";
 
-describe("MaxMinInterval component", () => {
+/**
+ * This test function should teste bouth tables that shows min and max values of data wins
+ * Producer with longest and shortest interval between wins
+ * Maximum
+ * and
+ * Minimum
+ */
+describe("Test maxMinInterval component", () => {
   test("renders table with provided content", () => {
-    // Mock content data
+    // Mock content data to render
     const content = [
       {
         producer: "Producer 1",
-        interval: "Interval 1",
-        previousWin: "Prev 1",
-        followingWin: "Next 1",
+        interval: "10",
+        previousWin: "2002",
+        followingWin: "2012",
       },
       {
         producer: "Producer 2",
-        interval: "Interval 2",
-        previousWin: "Prev 2",
-        followingWin: "Next 2",
+        interval: "1",
+        previousWin: "2005",
+        followingWin: "2006",
       },
     ];
 
-    // Render the component with mock content
+    // Render the component with mock content that we create abouve
     const { getByText } = render(<MaxMinInterval content={content} />);
 
     // Assert that table headers are rendered
@@ -30,7 +37,7 @@ describe("MaxMinInterval component", () => {
     expect(getByText("Previous Year")).toBeInTheDocument();
     expect(getByText("Following Year")).toBeInTheDocument();
 
-    // Assert that content data is rendered
+    // Assert that content data is rendered correctly
     content.forEach(({ producer, interval, previousWin, followingWin }) => {
       expect(getByText(producer)).toBeInTheDocument();
       expect(getByText(interval)).toBeInTheDocument();

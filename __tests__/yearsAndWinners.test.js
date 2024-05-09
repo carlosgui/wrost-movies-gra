@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import YearsAndWinners from "../src/pages/components/yearsAndWinners";
 
-describe("YearsAndWinners component", () => {
+describe("Test yearsAndWinners component", () => {
   test("renders loading spinner when loading prop is true", () => {
     const { container } = render(
       <YearsAndWinners
@@ -14,7 +14,7 @@ describe("YearsAndWinners component", () => {
       />
     );
 
-    // Assert that loading spinner is rendered
+    // Assert that loading spinner is rendered correctly
     expect(container.querySelector(".spinner-border")).toBeInTheDocument();
   });
 

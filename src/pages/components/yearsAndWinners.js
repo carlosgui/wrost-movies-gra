@@ -1,6 +1,11 @@
 import React from "react";
 import { Card, Table, Spinner } from "react-bootstrap";
 
+/**This test function should guarantee that the bouth table are correctly rendered
+ * List years with multiple winners
+ * and
+ * Top 3 studios with winners
+ */
 function YearsAndWinners({ multWinners, loading, changeTable, topWinners }) {
   const cardTitle = [
     "List years with multiple winners",
