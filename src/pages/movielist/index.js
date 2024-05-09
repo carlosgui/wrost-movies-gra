@@ -12,6 +12,7 @@ import {
   Spinner,
   Table,
 } from "react-bootstrap";
+
 import api from "../../services/api";
 
 function Movielist() {
@@ -41,7 +42,8 @@ function Movielist() {
     load();
   }, [activePage, searchYear, winnerStatus]);
 
-  function mountPaginationItems(totalPages) {
+  //should be an usecallback separately
+  const mountPaginationItems = (totalPages) => {
     let items = [];
     for (
       let number = activePage >= 3 ? activePage - 2 : 0;
@@ -62,7 +64,7 @@ function Movielist() {
     }
 
     return items;
-  }
+  };
 
   function handleNextPrevButton(isNext) {
     isNext ? setActivePage(activePage + 1) : setActivePage(activePage - 1);

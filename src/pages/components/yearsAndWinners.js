@@ -1,4 +1,4 @@
-import { Card, Spinner, Table } from "react-bootstrap";
+import { Card, Table, Spinner } from "react-bootstrap";
 
 function YearsAndWinners({ multWinners, loading, changeTable, topWinners }) {
   const cardTitle = [
