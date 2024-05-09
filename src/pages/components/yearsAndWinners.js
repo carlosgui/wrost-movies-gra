@@ -17,7 +17,7 @@ function YearsAndWinners({ multWinners, loading, changeTable, topWinners }) {
       return multWinners.map(({ year, winnerCount }, index) => {
         return (
           <tr key={index}>
-            <td id="title-year">{year}</td>
+            <td>{year}</td>
             <td>{winnerCount}</td>
           </tr>
         );
