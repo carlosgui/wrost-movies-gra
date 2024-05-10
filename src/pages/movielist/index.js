@@ -91,6 +91,7 @@ function Movielist() {
       setWinnerStatus("");
       setWinnerText("Select Status");
     }
+    setActivePage(0);
   }
 
   function clearFilters() {
